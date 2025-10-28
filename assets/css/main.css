@@ -1,0 +1,257 @@
+/*
+  UBC — Global Apparel Manufacturing
+  main.css (global styles for all pages)
+  ------------------------------------------------------
+  • Bootstrap 4 friendly overrides (no !important unless necessary)
+  • Consistent spacing, colors, typography
+  • Components: header, hero, section blocks, cards, gallery, CTA, footer, utilities
+*/
+
+/* =====================
+   1) CSS Variables
+   ===================== */
+:root {
+  /* Brand Colors */
+  --ubc-navy: #0c2239;          /* Primary brand */
+  --ubc-navy-700: #0a1c2f;
+  --ubc-blue: #2e6eff;          /* Accent */
+  --ubc-gold: #e0b24c;          /* Secondary accent for highlights */
+  --ubc-gray-900: #1f2a37;
+  --ubc-gray-700: #374151;
+  --ubc-gray-500: #6b7280;
+  --ubc-gray-300: #d1d5db;
+  --ubc-gray-100: #f3f4f6;
+  --white: #ffffff;
+
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-size-base: 16px;
+  --line-height-base: 1.6;
+
+  /* Layout */
+  --container-max: 1200px; /* can be used for custom widths */
+  --radius-xl: 1.25rem;
+  --radius-lg: .875rem;
+  --radius-md: .5rem;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 12px rgba(0,0,0,.06);
+  --shadow-md: 0 10px 30px rgba(0,0,0,.12);
+}
+
+/* =====================
+   2) Base
+   ===================== */
+html { font-size: 100%; }
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--ubc-gray-900);
+  background-color: #fff;
+}
+img { max-width: 100%; height: auto; }
+
+/* Smooth scroll for a premium feel */
+html { scroll-behavior: smooth; }
+
+/* =====================
+   3) Utilities
+   ===================== */
+.text-muted-700 { color: var(--ubc-gray-700); }
+.text-muted-500 { color: var(--ubc-gray-500); }
+.bg-ubc-navy { background-color: var(--ubc-navy); }
+.bg-ubc-light { background-color: var(--ubc-gray-100); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-md { border-radius: var(--radius-md); }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+
+/* Spacing helpers (minimal set) */
+.section { padding: 3.5rem 0; }
+.section-sm { padding: 2rem 0; }
+
+/* Buttons — align with brand */
+.btn-primary {
+  background-color: var(--ubc-blue);
+  border-color: var(--ubc-blue);
+}
+.btn-primary:hover { filter: brightness(.9); }
+.btn-outline-primary {
+  color: var(--ubc-blue);
+  border-color: var(--ubc-blue);
+}
+.btn-outline-primary:hover { background-color: var(--ubc-blue); color: #fff; }
+.btn-light { color: var(--ubc-navy); }
+
+/* Links */
+.a-underline-none a { text-decoration: none; }
+
+/* =====================
+   4) Header / Nav
+   ===================== */
+.site-header { transition: box-shadow .25s ease, background-color .25s ease; }
+.site-header .navbar-brand img { display: block; }
+
+/* Add top offset to avoid content hidden behind fixed header */
+body { padding-top: 72px; }
+@media (min-width: 992px) {
+  body { padding-top: 84px; }
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--ubc-gray-700);
+  font-weight: 500;
+  padding: .5rem 1rem;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: var(--ubc-blue);
+}
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.active {
+  color: var(--ubc-blue);
+}
+
+/* =====================
+   5) Hero
+   ===================== */
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  isolation: isolate; /* let overlay sit below content */
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12,34,57,.55) 0%, rgba(12,34,57,.55) 40%, rgba(12,34,57,.35) 100%);
+  z-index: 0;
+}
+.hero > .container { position: relative; z-index: 1; }
+.hero h1, .hero p { color: #fff; }
+.hero .btn { box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+
+/* =====================
+   6) Home: About Preview block
+   ===================== */
+.home-about img { border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+.home-about h2 { font-weight: 700; }
+
+/* =====================
+   7) Capabilities Icons Grid
+   ===================== */
+.capabilities-grid .col-md-3 { margin-bottom: 1.5rem; }
+.capabilities-grid img { filter: drop-shadow(0 2px 6px rgba(0,0,0,.12)); }
+.capabilities-grid h5 { margin-top: .5rem; font-weight: 600; color: var(--ubc-gray-900); }
+
+/* =====================
+   8) Portfolio Preview
+   ===================== */
+.portfolio-card img {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.portfolio-card img:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+/* =====================
+   9) CTA Section
+   ===================== */
+.cta { background-color: var(--ubc-navy); color: #fff; }
+.cta h2 { font-weight: 700; }
+.cta .btn { font-weight: 600; }
+
+/* =====================
+   10) Footer
+   ===================== */
+footer { font-size: .95rem; }
+footer p { margin-bottom: .25rem; }
+footer .small { color: var(--ubc-gray-300); }
+
+/* =====================
+   11) Forms (used later on Contact)
+   ===================== */
+.form-control:focus {
+  border-color: var(--ubc-blue);
+  box-shadow: 0 0 0 .2rem rgba(46,110,255,.15);
+}
+.custom-file-input:focus ~ .custom-file-label {
+  border-color: var(--ubc-blue);
+  box-shadow: 0 0 0 .2rem rgba(46,110,255,.15);
+}
+
+/* =====================
+   12) Responsive Tweaks
+   ===================== */
+@media (max-width: 991.98px) {
+  .hero { min-height: 70vh; }
+}
+@media (max-width: 575.98px) {
+  .section { padding: 2.5rem 0; }
+  .hero .display-4 { font-size: 2rem; }
+}
+
+/* =====================
+   13) Optional: subtle reveal animation (no JS dependency)
+   ===================== */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.show { opacity: 1; transform: translateY(0); }
+
+/* =====================
+   14) Brand scroller (past clients)
+   ===================== */
+.brand-scroller { position: relative; overflow: hidden; padding: .5rem 0; }
+.brand-track {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  will-change: transform;
+  animation: brand-scroll 28s linear infinite;
+}
+/* pause on hover */
+.brand-scroller:hover .brand-track { animation-play-state: paused; }
+/* logos */
+.brand-track img {
+  height: 60px;
+  filter: grayscale(100%) contrast(.9) brightness(.9);
+  opacity: .9;
+  transition: filter .2s ease, opacity .2s ease, transform .2s ease;
+}
+.brand-track img:hover { filter: none; opacity: 1; transform: translateY(-2px); }
+/* edge fade (matches bg-light) */
+.brand-scroller::before,
+.brand-scroller::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 64px;
+  pointer-events: none;
+}
+.brand-scroller::before {
+  left: 0;
+  background: linear-gradient(to right, var(--ubc-gray-100) 0%, rgba(243,244,246,0) 100%);
+}
+.brand-scroller::after {
+  right: 0;
+  background: linear-gradient(to left, var(--ubc-gray-100) 0%, rgba(243,244,246,0) 100%);
+}
+@keyframes brand-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 575.98px) {
+  .brand-track { gap: 1.75rem; }
+  .brand-track img { height: 42px; }
+}
+@media (prefers-reduced-motion: reduce) { .brand-track { animation: none; } }
+
+/* Utility borders for debugging (remove in prod)
+.debug-border { outline: 1px dashed rgba(0,0,0,.2); }
+*/
+:root { --nav-logo-h: 45px; }
+
+.site-header .navbar-brand img {
+  height: var(--nav-logo-h);
+  width: auto;
+  display: block;
+}

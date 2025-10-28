@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact UBC — Send your tech pack, request a quote, and speak with our USA & overseas teams." />
+  <title>Contact | United Business Corporation (UBC)</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header fixed-top bg-white shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light container">
+      <a class="navbar-brand" href="index.html" aria-label="UBC Home">
+        <img src="assets/img/logo/ubc-logo.png" alt="UBC Logo" height="45" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="capabilities.html">Capabilities</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="usa-factory.html">USA Factory</a></li>
+          <li class="nav-item active"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero d-flex align-items-center" style="background-image:url('assets/img/hero/hero-contact.jpg'); background-size:cover; background-position:center; min-height:55vh;">
+    <div class="container text-white">
+      <div class="row">
+        <div class="col-lg-9">
+          <h1 class="display-4 font-weight-bold">Start Your Project</h1>
+          <p class="lead mb-0">Share your tech pack, timelines, and target quantities — we’ll respond with the fastest, most cost‑effective plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact + Form -->
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <!-- Form -->
+        <div class="col-lg-7 mb-5 mb-lg-0">
+          <div class="card shadow-sm">
+            <div class="card-body p-4">
+              <h2 class="h4 mb-3">Tell Us About Your Project</h2>
+              <!-- NOTE: Wire this action to your backend or form service later. See forms/contact-endpoint.md -->
+              <form id="contactForm" action="#" method="post" enctype="multipart/form-data" novalidate>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Jane Smith" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="email">Work Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@brand.com" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="company">Company</label>
+                    <input type="text" class="form-control" id="company" name="company" placeholder="Brand / Company" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="phone">Phone (optional)</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="+1 (___) ___‑____" pattern="[+0-9()\-\s]{7,}">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="projectType">Project Type</label>
+                    <select id="projectType" name="projectType" class="form-control" required>
+                      <option value="" selected disabled>Choose…</option>
+                      <option>Product Development</option>
+                      <option>Sampling / SMS</option>
+                      <option>Bulk Production</option>
+                      <option>QC / Inspection</option>
+                      <option>Logistics / Shipping</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="qty">Est. Quantity</label>
+                    <select id="qty" name="qty" class="form-control" required>
+                      <option value="" selected disabled>Choose…</option>
+                      <option>~100 pcs (USA quick‑turn)</option>
+                      <option>300–1,000 pcs</option>
+                      <option>1,000–5,000 pcs</option>
+                      <option>5,000+ pcs</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="targetDate">Target In‑Hand Date</label>
+                    <input type="date" class="form-control" id="targetDate" name="targetDate" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="incoterm">Incoterm (optional)</label>
+                    <select id="incoterm" name="incoterm" class="form-control">
+                      <option value="" selected>—</option>
+                      <option>EXW</option>
+                      <option>FOB</option>
+                      <option>CIF</option>
+                      <option>DDP</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Project Notes</label>
+                  <textarea class="form-control" id="message" name="message" rows="5" placeholder="Briefly describe your styles, fabrics, sizes, and timeline…" required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="file">Upload Tech Pack / Artwork (optional)</label>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="file" name="file" aria-describedby="fileHelp" accept=".pdf,.ai,.psd,.zip,.rar,.xlsx,.xls,.csv,.png,.jpg,.jpeg">
+                    <label class="custom-file-label" for="file">Choose file…</label>
+                  </div>
+                  <small id="fileHelp" class="form-text text-muted">Accepted: PDF, AI, PSD, ZIP/RAR, spreadsheets, PNG/JPG.</small>
+                </div>
+
+                <div class="d-flex align-items-start mb-3">
+                  <input type="checkbox" id="agree" name="agree" class="mr-2 mt-1" required>
+                  <label for="agree" class="mb-0 small text-muted">I agree that UBC may contact me about this inquiry and related services. We respect your privacy and will not share your information without consent.</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send Request</button>
+                <p class="small text-muted mt-2 mb-0">You’ll receive a confirmation email after submission. Typical reply within 1–2 business days.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-5">
+          <div class="card shadow-sm mb-4">
+            <div class="card-body">
+              <h3 class="h5">United Business Corporation (USA)</h3>
+              <p class="mb-1">4981 Irwindale Ave, Suite 700</p>
+              <p class="mb-1">Irwindale, CA 91706</p>
+              <p class="mb-1">Email: <a href="mailto:info@ubcusa.com">info@ubcusa.com</a></p>
+              <!-- Optional: add phone if you want to publish it -->
+              <!-- <p class="mb-1">Phone: (XXX) XXX‑XXXX</p> -->
+              <p class="small text-muted mb-0">USA quick‑turn sampling • Overseas scale • AQL QC • Logistics support</p>
+            </div>
+          </div>
+
+          <div class="card shadow-sm mb-4">
+            <div class="card-body">
+              <h6 class="text-uppercase text-muted mb-2">Map / Directions</h6>
+              <div class="bg-ubc-light rounded d-flex align-items-center justify-content-center" style="height: 220px;">
+                <span class="text-muted">Map placeholder (embed later)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h6 class="text-uppercase text-muted mb-2">Quick Contact</h6>
+              <div class="d-flex align-items-center mb-2">
+                <div class="rounded bg-ubc-light d-inline-flex align-items-center justify-content-center" style="width:42px;height:42px;">
+                  <span aria-hidden="true">✉️</span>
+                </div>
+                <a class="ml-3" href="mailto:info@ubcusa.com">info@ubcusa.com</a>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="rounded bg-ubc-light d-inline-flex align-items-center justify-content-center" style="width:42px;height:42px;">
+                  <span aria-hidden="true">💬</span>
+                </div>
+                <span class="ml-3 text-muted">WeChat / WhatsApp QR (placeholder)</span>
+              </div>
+              <!-- Placeholders for future images -->
+              <!-- <img src="assets/img/contact/wechat-qr.png" alt="WeChat QR" class="mt-2 rounded shadow-sm" width="120"> -->
+              <!-- <img src="assets/img/contact/whatsapp-qr.png" alt="WhatsApp QR" class="mt-2 rounded shadow-sm" width="120"> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-dark text-white text-center">
+    <div class="container">
+      <p class="mb-1">&copy; 2025 United Business Corporation. All Rights Reserved.</p>
+      <p class="small">4981 Irwindale Ave, Suite 700, Irwindale, CA 91706 | info@ubcusa.com</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Enhance custom-file label text on selection (Bootstrap 4 pattern)
+    $(document).on('change', '.custom-file-input', function(){
+      var fileName = $(this).val().split('\\\\').pop();
+      $(this).siblings('.custom-file-label').addClass('selected').text(fileName || 'Choose file…');
+    });
+
+    // Optional: prevent actual submit while backend is not wired
+    $('#contactForm').on('submit', function(e){
+      e.preventDefault();
+      if(this.checkValidity() === false){
+        $(this).addClass('was-validated');
+        return;
+      }
+      alert('Form captured. Backend wiring pending (see forms/contact-endpoint.md).');
+    });
+  </script>
+</body>
+</html>
