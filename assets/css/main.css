@@ -146,6 +146,19 @@ body { padding-top: 72px; }
 .capabilities-grid .col-md-3 { margin-bottom: 1.5rem; }
 .capabilities-grid img { filter: drop-shadow(0 2px 6px rgba(0,0,0,.12)); }
 .capabilities-grid h5 { margin-top: .5rem; font-weight: 600; color: var(--ubc-gray-900); }
+/* 放大能力图标（自适应大小） */
+:root { --cap-icon-size: clamp(60px, 6vw, 96px); }
+
+.capabilities-grid img {
+  height: var(--cap-icon-size) !important; /* 覆盖 HTML 里的 width=60 */
+  width: auto;
+  object-fit: contain;
+  /* 你原本的阴影可保留 */
+  /* filter: drop-shadow(0 2px 6px rgba(0,0,0,.12)); */
+}
+
+/* 标题与图标间距微调（可选） */
+.capabilities-grid h5 { margin-top: .75rem; }
 
 /* =====================
    8) Portfolio Preview
@@ -201,57 +214,109 @@ footer .small { color: var(--ubc-gray-300); }
 .reveal.show { opacity: 1; transform: translateY(0); }
 
 /* =====================
-   14) Brand scroller (past clients)
+   14) Brand scroller (past clients) — dark tiles for white logos
    ===================== */
-.brand-scroller { position: relative; overflow: hidden; padding: .5rem 0; }
+.brand-scroller { position: relative; overflow: hidden; padding: .75rem 0; }
+
 .brand-track {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 2.25rem;
   will-change: transform;
   animation: brand-scroll 28s linear infinite;
 }
-/* pause on hover */
+
+/* 悬停暂停，便于查看 */
 .brand-scroller:hover .brand-track { animation-play-state: paused; }
-/* logos */
+
+/* LOGO“磁贴”：深色底 + 内边距 + 统一高度 */
 .brand-track img {
-  height: 60px;
-  filter: grayscale(100%) contrast(.9) brightness(.9);
-  opacity: .9;
-  transition: filter .2s ease, opacity .2s ease, transform .2s ease;
+  height: 52px;           /* 统一 LOGO 高度 */
+  background: #0a1c2f;    /* 深色底板（接近 UBC Navy 700）*/
+  padding: 10px 16px;     /* 留白，避免贴边 */
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  display: block;
+  opacity: .95;
+  filter: none;           /* 不降灰，保证白字清晰 */
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
 }
-.brand-track img:hover { filter: none; opacity: 1; transform: translateY(-2px); }
-/* edge fade (matches bg-light) */
+.brand-track img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  opacity: 1;
+}
+
+/* 边缘渐隐：与 section 的 bg-light (#f8f9fa) 一致 */
 .brand-scroller::before,
 .brand-scroller::after {
   content: "";
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 64px;
-  pointer-events: none;
+  position: absolute; top: 0; bottom: 0;
+  width: 64px; pointer-events: none;
 }
-.brand-scroller::before {
-  left: 0;
-  background: linear-gradient(to right, var(--ubc-gray-100) 0%, rgba(243,244,246,0) 100%);
+.brand-scroller::before { left: 0;
+  background: linear-gradient(to right, #f8f9fa 0%, rgba(248,249,250,0) 100%);
 }
-.brand-scroller::after {
-  right: 0;
-  background: linear-gradient(to left, var(--ubc-gray-100) 0%, rgba(243,244,246,0) 100%);
+.brand-scroller::after { right: 0;
+  background: linear-gradient(to left, #f8f9fa 0%, rgba(248,249,250,0) 100%);
 }
-@keyframes brand-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@media (max-width: 575.98px) {
-  .brand-track { gap: 1.75rem; }
-  .brand-track img { height: 42px; }
-}
-@media (prefers-reduced-motion: reduce) { .brand-track { animation: none; } }
 
-/* Utility borders for debugging (remove in prod)
-.debug-border { outline: 1px dashed rgba(0,0,0,.2); }
-*/
-:root { --nav-logo-h: 45px; }
+/* 无缝滚动动画（保持不变） */
+@keyframes brand-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* 响应式微调 */
+@media (max-width: 575.98px) {
+  .brand-track { gap: 1.25rem; }
+  .brand-track img { height: 42px; padding: 8px 12px; }
+}
+@media (min-width: 1200px) {
+  .brand-track img { height: 56px; }
+}
+
+/* 低动效偏好：关闭动画 */
+@media (prefers-reduced-motion: reduce) { .brand-track { animation: none; } }
+/* 14.x) Nav logo size fix (keep here as an override) */
+:root { --nav-logo-h: 45px; }   /* 想更小/更大改这里 */
 
 .site-header .navbar-brand img {
-  height: var(--nav-logo-h);
+  height: var(--nav-logo-h) !important;  /* 强制覆盖页面里可能写的 height="45" 等 */
   width: auto;
   display: block;
+}
+
+/* 可选：小屏更小一点 */
+@media (max-width: 575.98px) {
+  :root { --nav-logo-h: 42px; }
+}
+/* keyframes 使用变量距离，缺省回退 50% */
+@keyframes brand-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-1 * var(--brand-scroll-dist, 50%))); }
+}
+
+/* 轨道启用动画（你已有类似样式的话保留即可） */
+.brand-track {
+  animation: brand-scroll var(--brand-scroll-speed, 45s) linear infinite;
+  flex-wrap: nowrap;
+  width: max-content;
+}
+
+/* =====================
+   15) About — Leadership Cards
+   ===================== */
+.leader-photo {
+  display: block;
+  width: 100%;
+  height: 220px;           /* 统一头像高度 */
+  object-fit: cover;       /* 填满容器，等比裁切 */
+  object-position: center; /* 以中心为基准裁切 */
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 575.98px) {
+  .leader-photo { height: 180px; }
+}
+
+@media (min-width: 1200px) {
+  .leader-photo { height: 240px; }
 }
