@@ -1,0 +1,13 @@
+/*
+  Contact page styles
+*/
+
+.form-control:focus {
+  border-color: var(--ubc-blue);
+  box-shadow: 0 0 0 0.2rem rgba(46, 110, 255, 0.15);
+}
+
+.custom-file-input:focus ~ .custom-file-label {
+  border-color: var(--ubc-blue);
+  box-shadow: 0 0 0 0.2rem rgba(46, 110, 255, 0.15);
+}

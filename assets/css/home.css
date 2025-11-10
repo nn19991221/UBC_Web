@@ -1,0 +1,97 @@
+/*
+  Home page styles
+*/
+
+/* About preview block */
+.home-about img {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.home-about h2 { font-weight: 700; }
+
+/* Portfolio preview cards */
+.portfolio-card img {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.portfolio-card img:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Brand scroller */
+.brand-scroller {
+  position: relative;
+  overflow: hidden;
+  padding: 0.75rem 0;
+}
+
+.brand-track {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  will-change: transform;
+  animation: brand-scroll var(--brand-scroll-speed, 45s) linear infinite;
+  flex-wrap: nowrap;
+  width: max-content;
+}
+
+.brand-scroller:hover .brand-track { animation-play-state: paused; }
+
+.brand-track img {
+  height: 52px;
+  background: #0a1c2f;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: block;
+  opacity: 0.95;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.brand-track img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  opacity: 1;
+}
+
+.brand-scroller::before,
+.brand-scroller::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  pointer-events: none;
+}
+
+.brand-scroller::before {
+  left: 0;
+  background: linear-gradient(to right, #f8f9fa 0%, rgba(248, 249, 250, 0) 100%);
+}
+
+.brand-scroller::after {
+  right: 0;
+  background: linear-gradient(to left, #f8f9fa 0%, rgba(248, 249, 250, 0) 100%);
+}
+
+@keyframes brand-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-1 * var(--brand-scroll-dist, 50%))); }
+}
+
+@media (max-width: 575.98px) {
+  .brand-track { gap: 1.25rem; }
+  .brand-track img { height: 42px; padding: 8px 12px; }
+}
+
+@media (min-width: 1200px) {
+  .brand-track img { height: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-track { animation: none; }
+}
