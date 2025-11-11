@@ -58,8 +58,7 @@
           <div class="card shadow-sm">
             <div class="card-body p-4">
               <h2 class="h4 mb-3">Tell Us About Your Project</h2>
-              <!-- NOTE: Wire this action to your backend or form service later. See forms/contact-endpoint.md -->
-              <form id="contactForm" action="#" method="post" enctype="multipart/form-data" novalidate>
+              <form id="contactForm" action="https://formspree.io/f/mrbrgeay" method="post" enctype="multipart/form-data" novalidate>
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="name">Full Name</label>
@@ -141,6 +140,7 @@
                   <label for="agree" class="mb-0 small text-muted">I agree that UBC may contact me about this inquiry and related services. We respect your privacy and will not share your information without consent.</label>
                 </div>
 
+                <div id="formStatus" class="alert d-none" role="status" aria-live="polite"></div>
                 <button type="submit" class="btn btn-primary">Send Request</button>
                 <p class="small text-muted mt-2 mb-0">You’ll receive a confirmation email after submission. Typical reply within 1–2 business days.</p>
               </form>
@@ -165,8 +165,18 @@
           <div class="card shadow-sm mb-4">
             <div class="card-body">
               <h6 class="text-uppercase text-muted mb-2">Map / Directions</h6>
-              <div class="bg-ubc-light rounded d-flex align-items-center justify-content-center" style="height: 220px;">
-                <span class="text-muted">Map placeholder (embed later)</span>
+              <div class="rounded overflow-hidden" style="height: 220px;">
+                <iframe
+                  title="United Business Corporation Location"
+                  src="https://maps.google.com/maps?q=4981%20Irwindale%20Ave%20Suite%20700%2C%20Irwindale%2C%20CA%2091706&output=embed"
+                  width="100%"
+                  height="100%"
+                  frameborder="0"
+                  style="border:0;"
+                  allowfullscreen
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
           </div>
@@ -214,15 +224,56 @@
       $(this).siblings('.custom-file-label').addClass('selected').text(fileName || 'Choose file…');
     });
 
-    // Optional: prevent actual submit while backend is not wired
-    $('#contactForm').on('submit', function(e){
-      e.preventDefault();
-      if(this.checkValidity() === false){
-        $(this).addClass('was-validated');
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('formStatus');
+
+    const setStatus = (message, type = 'info') => {
+      if(!statusEl){
         return;
       }
-      alert('Form captured. Backend wiring pending (see forms/contact-endpoint.md).');
-    });
+      statusEl.classList.remove('d-none', 'alert-success', 'alert-danger', 'alert-info');
+      const alertClass = type === 'success' ? 'alert-success' : (type === 'error' ? 'alert-danger' : 'alert-info');
+      statusEl.classList.add('alert', alertClass);
+      statusEl.textContent = message;
+    };
+
+    if(form){
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!form.checkValidity()){
+          form.classList.add('was-validated');
+          return;
+        }
+
+        const formData = new FormData(form);
+        setStatus('Sending your request…', 'info');
+
+        fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if(response.ok){
+            setStatus('Thanks for reaching out! We\'ll reply within 1–2 business days.', 'success');
+            form.reset();
+            form.classList.remove('was-validated');
+            $('.custom-file-label').removeClass('selected').text('Choose file…');
+          } else {
+            return response.json().then(data => {
+              const error = data.errors && data.errors.length ? data.errors.map(err => err.message).join(' ') : 'Something went wrong. Please email us directly at simon@ubcimports.com.';
+              setStatus(error, 'error');
+            }).catch(() => {
+              setStatus('Something went wrong. Please email us directly at simon@ubcimports.com.', 'error');
+            });
+          }
+        }).catch(() => {
+          setStatus('Unable to send right now. Please try again shortly or email simon@ubcimports.com.', 'error');
+        });
+      });
+    }
   </script>
 </body>
 </html>
+
