@@ -156,7 +156,7 @@
               <h3 class="h5">United Business Corporation (USA)</h3>
               <p class="mb-1">4981 Irwindale Ave, Suite 700</p>
               <p class="mb-1">Irwindale, CA 91706</p>
-              <p class="mb-1">Email: <a href="mailto:simon@ubcimports.com">simon@ubcimports.com</a></p>
+              <p class="mb-1">Email: <a href="mailto:info@ubcimports.com">info@ubcimports.com</a></p>
               <!-- Optional: add phone if you want to publish it -->
               <!-- <p class="mb-1">Phone: (XXX) XXX‑XXXX</p> -->
               <p class="small text-muted mb-0">USA quick‑turn sampling • Overseas scale • AQL QC • Logistics support</p>
@@ -189,7 +189,7 @@
                 <div class="rounded bg-ubc-light d-inline-flex align-items-center justify-content-center" style="width:42px;height:42px;">
                   <span aria-hidden="true">✉️</span>
                 </div>
-                <a class="ml-3" href="mailto:simon@ubcimports.com">simon@ubcimports.com</a>
+                <a class="ml-3" href="mailto:info@ubcimports.com">info@ubcimports.com</a>
               </div>
               <div class="d-flex align-items-center">
                 <div class="rounded bg-ubc-light d-inline-flex align-items-center justify-content-center" style="width:42px;height:42px;">
@@ -211,7 +211,7 @@
   <footer class="py-4 bg-dark text-white text-center">
     <div class="container">
       <p class="mb-1">&copy; 2025 United Business Corporation. All Rights Reserved.</p>
-      <p class="small">4981 Irwindale Ave, Suite 700, Irwindale, CA 91706 | simon@ubcimports.com</p>
+      <p class="small">4981 Irwindale Ave, Suite 700, Irwindale, CA 91706 | info@ubcimports.com</p>
     </div>
   </footer>
 
@@ -263,14 +263,14 @@
             $('.custom-file-label').removeClass('selected').text('Choose file…');
           } else {
             return response.json().then(data => {
-              const error = data.errors && data.errors.length ? data.errors.map(err => err.message).join(' ') : 'Something went wrong. Please email us directly at simon@ubcimports.com.';
+              const error = data.errors && data.errors.length ? data.errors.map(err => err.message).join(' ') : 'Something went wrong. Please email us directly at info@ubcimports.com.';
               setStatus(error, 'error');
             }).catch(() => {
-              setStatus('Something went wrong. Please email us directly at simon@ubcimports.com.', 'error');
+              setStatus('Something went wrong. Please email us directly at info@ubcimports.com.', 'error');
             });
           }
         }).catch(() => {
-          setStatus('Unable to send right now. Please try again shortly or email simon@ubcimports.com.', 'error');
+          setStatus('Unable to send right now. Please try again shortly or email info@ubcimports.com.', 'error');
         });
       });
     }
