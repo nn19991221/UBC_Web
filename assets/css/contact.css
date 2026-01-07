@@ -3,11 +3,11 @@
 */
 
 .form-control:focus {
-  border-color: var(--ubc-blue);
-  box-shadow: 0 0 0 0.2rem rgba(46, 110, 255, 0.15);
+  border-color: var(--ubc-gold);
+  box-shadow: 0 0 0 0.2rem rgba(209, 162, 63, 0.2);
 }
 
 .custom-file-input:focus ~ .custom-file-label {
-  border-color: var(--ubc-blue);
-  box-shadow: 0 0 0 0.2rem rgba(46, 110, 255, 0.15);
+  border-color: var(--ubc-gold);
+  box-shadow: 0 0 0 0.2rem rgba(209, 162, 63, 0.2);
 }
