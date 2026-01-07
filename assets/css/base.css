@@ -12,15 +12,18 @@
    ===================== */
 :root {
   /* Brand Colors */
-  --ubc-navy: #0c2239;          /* Primary brand */
-  --ubc-navy-700: #0a1c2f;
-  --ubc-blue: #2e6eff;          /* Accent */
-  --ubc-gold: #e0b24c;          /* Secondary accent */
+  --ubc-black: #0b0b0b;          /* Primary brand */
+  --ubc-navy: #0b0b0b;           /* Legacy alias */
+  --ubc-ink: #121212;
+  --ubc-ink-700: #1b1b1b;
+  --ubc-gold: #d1a23f;           /* Primary accent */
+  --ubc-gold-700: #b48a2e;
+  --ubc-blue: #d1a23f;           /* Legacy alias for accent */
   --ubc-gray-900: #1f2a37;
-  --ubc-gray-700: #374151;
+  --ubc-gray-700: #3f3f46;
   --ubc-gray-500: #6b7280;
-  --ubc-gray-300: #d1d5db;
-  --ubc-gray-100: #f3f4f6;
+  --ubc-gray-300: #d4d4d8;
+  --ubc-gray-100: #f6f4f1;
   --white: #ffffff;
 
   /* Typography */
@@ -31,13 +34,14 @@
 
   /* Layout */
   --container-max: 1200px;
-  --radius-xl: 1.25rem;
-  --radius-lg: 0.875rem;
+  --radius-xl: 1.5rem;
+  --radius-lg: 1rem;
   --radius-md: 0.5rem;
 
   /* Shadows */
-  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 6px 16px rgba(15, 15, 15, 0.08);
+  --shadow-md: 0 16px 40px rgba(15, 15, 15, 0.16);
+  --shadow-lg: 0 26px 60px rgba(15, 15, 15, 0.25);
 
   /* Nav overrides */
   --nav-logo-h: 45px;
@@ -52,7 +56,7 @@ body {
   font-family: var(--font-sans);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
-  color: var(--ubc-gray-900);
+  color: var(--ubc-ink);
   background-color: #fff;
   padding-top: 72px;
 }
@@ -63,39 +67,76 @@ body {
 
 img { max-width: 100%; height: auto; }
 
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ubc-ink);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.display-4 { letter-spacing: -0.03em; }
+
 /* =====================
    3) Utilities
    ===================== */
 .text-muted-700 { color: var(--ubc-gray-700); }
 .text-muted-500 { color: var(--ubc-gray-500); }
+.text-gold { color: var(--ubc-gold); }
 .bg-ubc-navy { background-color: var(--ubc-navy); }
+.bg-ubc-ink { background-color: var(--ubc-ink); }
 .bg-ubc-light { background-color: var(--ubc-gray-100); }
+.bg-light { background-color: var(--ubc-gray-100) !important; }
 .rounded-xl { border-radius: var(--radius-xl); }
 .rounded-lg { border-radius: var(--radius-lg); }
 .rounded-md { border-radius: var(--radius-md); }
 .shadow-sm { box-shadow: var(--shadow-sm); }
 .shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
 
-.section { padding: 3.5rem 0; }
-.section-sm { padding: 2rem 0; }
+.section { padding: 4.5rem 0; }
+.section-sm { padding: 2.5rem 0; }
+
+.section-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ubc-gold);
+  margin-bottom: 0.6rem;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 2vw, 2.25rem);
+  margin-bottom: 1rem;
+}
+
+.section-lead {
+  color: var(--ubc-gray-700);
+  font-size: 1.05rem;
+}
 
 /* Buttons */
 .btn-primary {
-  background-color: var(--ubc-blue);
-  border-color: var(--ubc-blue);
+  background-color: var(--ubc-gold);
+  border-color: var(--ubc-gold);
+  color: var(--ubc-ink);
+  font-weight: 600;
 }
-.btn-primary:hover { filter: brightness(0.9); }
+.btn-primary:hover { filter: brightness(0.95); }
 
 .btn-outline-primary {
-  color: var(--ubc-blue);
-  border-color: var(--ubc-blue);
+  color: var(--ubc-ink);
+  border-color: var(--ubc-gold);
+  font-weight: 600;
 }
 .btn-outline-primary:hover {
-  background-color: var(--ubc-blue);
-  color: #fff;
+  background-color: var(--ubc-gold);
+  color: var(--ubc-ink);
 }
 
-.btn-light { color: var(--ubc-navy); }
+.btn-light {
+  color: var(--ubc-ink);
+  border-color: rgba(255, 255, 255, 0.7);
+}
 
 /* Links */
 .a-underline-none a { text-decoration: none; }
@@ -107,6 +148,10 @@ img { max-width: 100%; height: auto; }
   transition: box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
+.site-header.bg-white {
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+}
+
 .site-header .navbar-brand img {
   height: var(--nav-logo-h) !important;
   width: auto;
@@ -114,7 +159,7 @@ img { max-width: 100%; height: auto; }
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: var(--ubc-gray-700);
+  color: var(--ubc-ink);
   font-weight: 500;
   padding: 0.5rem 1rem;
 }
@@ -122,7 +167,7 @@ img { max-width: 100%; height: auto; }
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .active > .nav-link,
 .navbar-light .navbar-nav .nav-link.active {
-  color: var(--ubc-blue);
+  color: var(--ubc-gold);
 }
 
 @media (max-width: 575.98px) {
@@ -144,14 +189,15 @@ img { max-width: 100%; height: auto; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(12, 34, 57, 0.55) 0%, rgba(12, 34, 57, 0.55) 40%, rgba(12, 34, 57, 0.35) 100%);
+  background: linear-gradient(180deg, rgba(8, 8, 8, 0.75) 0%, rgba(8, 8, 8, 0.7) 40%, rgba(8, 8, 8, 0.5) 100%);
   z-index: 1;
 }
 
 .hero > .container { position: relative; z-index: 2; }
 .hero h1,
 .hero p { color: #fff; }
-.hero .btn { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
+.hero .btn { box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); }
+.hero .section-eyebrow { color: var(--ubc-gold); }
 
 .hero-video .hero-video-bg {
   position: absolute;
@@ -168,7 +214,7 @@ img { max-width: 100%; height: auto; }
    6) CTA Section
    ===================== */
 .cta {
-  background-color: var(--ubc-navy);
+  background: radial-gradient(circle at top left, rgba(209, 162, 63, 0.2), transparent 45%), var(--ubc-black);
   color: #fff;
 }
 
@@ -182,6 +228,39 @@ footer { font-size: 0.95rem; }
 footer p { margin-bottom: 0.25rem; }
 footer .small { color: var(--ubc-gray-300); }
 
+.bg-dark { background-color: var(--ubc-black) !important; }
+
+.card {
+  border: 1px solid rgba(15, 15, 15, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  background-color: #fff;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.badge-primary {
+  background-color: var(--ubc-gold);
+  color: var(--ubc-ink);
+}
+
+.table thead th {
+  border-bottom: 0;
+  font-weight: 600;
+  color: var(--ubc-ink);
+}
+
+.table .thead-light th {
+  background-color: #f1eee8;
+}
+
+.form-control,
+.custom-file-label {
+  border-radius: 0.6rem;
+}
+
 /* =====================
    8) Responsive Tweaks
    ===================== */
@@ -190,7 +269,7 @@ footer .small { color: var(--ubc-gray-300); }
 }
 
 @media (max-width: 575.98px) {
-  .section { padding: 2.5rem 0; }
+  .section { padding: 3.5rem 0; }
   .hero .display-4 { font-size: 2rem; }
 }
 
